@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@thirdweb-dev/contracts/base/ERC721Drop.sol";
 
-contract ERC721Drop is ERC721Drop {
+contract ERC721Dropping is ERC721Drop {
     constructor(
         string memory _name,
         string memory _symbol,
@@ -19,4 +19,12 @@ contract ERC721Drop is ERC721Drop {
             _primarySaleRecipient
         )
     {}
+
+    function mint(address _to, uint256 _amount) external {
+        require(
+            _amount > 0,
+            "ERC721Dropping: minting amount must be greater than 0"
+        );
+        _safeMint(_to, _amount);
+    }
 }
